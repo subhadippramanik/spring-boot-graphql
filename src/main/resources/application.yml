@@ -1,10 +1,8 @@
-spring:
-  profiles:
-    active: default
-    
 server.port: 8181
 
 logging:
   level:
     root: DEBUG
     com.siemens.bt: DEBUG
+    org.hibernate: INFO
+  

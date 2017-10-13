@@ -9,7 +9,7 @@ type Query {
 }
 
 type Mutation {
-  addEmployee(id: Int!, name: String!, email: String): Employee
+  addEmployee(name: String!, email: String): Employee
 }
 
 schema {

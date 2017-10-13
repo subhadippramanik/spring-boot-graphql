@@ -1,16 +1,21 @@
-package com.subhadip.springboot.graphql.type;
+package com.subhadip.springboot.graphql.model;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Component
+@Entity
 public class Employee {
-	
+
 	private int id;
-	
+
 	private String name;
-	
+
 	private String email;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return id;
 	}
