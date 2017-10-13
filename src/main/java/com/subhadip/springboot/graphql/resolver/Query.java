@@ -6,16 +6,17 @@ import org.springframework.stereotype.Component;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.google.common.collect.Lists;
-import com.subhadip.springboot.graphql.type.Blog;
+import com.subhadip.springboot.graphql.type.Employee;
 
 @Component
 public class Query implements GraphQLQueryResolver{
 	
-	public List<Blog> getAllBlogs() {
-		Blog blog = new Blog();
-		blog.setTitle("Hello World");
-		blog.setContent("First GraphQL example");
-		return Lists.newArrayList(blog);
+	public List<Employee> allEmployees() {
+		Employee emp = new Employee();
+		emp.setId(0);
+		emp.setName("Bob");
+		emp.setEmail("bob@email.demo");
+		return Lists.newArrayList(emp);
 	}
 
 }

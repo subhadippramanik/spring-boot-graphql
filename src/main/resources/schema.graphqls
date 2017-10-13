@@ -1,14 +1,15 @@
-type Blog {
-  title: String!
-  content: String!
+type Employee {
+  id: Int!
+  name: String!
+  email: String
 }
 
 type Query {
-  allBlogs: [Blog]
+  allEmployees: [Employee]
 }
 
 type Mutation {
-  createBlog(title: String!, content: String!): Blog
+  addEmployee(id: Int!, name: String!, email: String): Employee
 }
 
 schema {
