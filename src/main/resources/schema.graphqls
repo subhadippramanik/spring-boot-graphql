@@ -1,0 +1,17 @@
+type Blog {
+  title: String!
+  content: String!
+}
+
+type Query {
+  allBlogs: [Blog]
+}
+
+type Mutation {
+  createBlog(title: String!, content: String!): Blog
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
