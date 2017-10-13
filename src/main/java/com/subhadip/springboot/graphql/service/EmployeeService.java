@@ -25,4 +25,8 @@ public class EmployeeService {
 	public Employee save(Employee emp) {		
 		return repository.save(emp);
 	}
+
+	public Employee findById(int id) {		
+		return repository.findOne(id);
+	}
 }

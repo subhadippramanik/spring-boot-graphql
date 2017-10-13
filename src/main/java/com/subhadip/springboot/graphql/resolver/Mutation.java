@@ -23,4 +23,11 @@ public class Mutation implements GraphQLMutationResolver {
 		empToAdd.setEmail(email);
 		return empService.save(empToAdd);
 	}
+	
+	public Employee updateEmployee(int id, String name, String email) {
+		Employee existingEmp = empService.findById(id);
+		existingEmp.setName(name);
+		existingEmp.setEmail(email);
+		return empService.save(existingEmp);		
+	}
 }
