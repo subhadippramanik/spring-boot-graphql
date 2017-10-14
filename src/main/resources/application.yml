@@ -5,4 +5,9 @@ logging:
     root: DEBUG
     com.siemens.bt: DEBUG
     org.hibernate: INFO
-  
+    
+graphql:
+  servlet:
+    mapping: /demo
+    enabled: true
+    corsEnabled: true

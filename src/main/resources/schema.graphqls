@@ -5,8 +5,8 @@ type Employee {
 }
 
 type Query {
-  allEmployees: [Employee]
   employee(id: Int!): Employee
+  employees(name: String, email: String): [Employee]
 }
 
 type Mutation {
