@@ -26,12 +26,12 @@ HTTP GET: http://localhost:8181/demo?query={ employees{id, name, email}}
 HTTP GET http://localhost:8181/demo?query={ employees(name:"James"){id, name, email}}
 ```
 
-### Get employee by email
+### Get employees by email
 ```URL
 HTTP GET http://localhost:8181/demo?query={ employees(name:"James"){id, name, email}}
 ```
 
-### Get employee by name and email
+### Get employees by name and email
 ```URL
 HTTP GET http://localhost:8181/demo?query={ employees(name:"James", email:"james@email.demo"){id, name, email}}
 ```
