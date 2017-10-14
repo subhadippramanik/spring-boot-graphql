@@ -6,6 +6,7 @@ type Employee {
 
 type Query {
   allEmployees: [Employee]
+  employee(id: Int!): Employee
 }
 
 type Mutation {

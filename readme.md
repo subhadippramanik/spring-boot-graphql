@@ -3,6 +3,11 @@ Get all employees
 HTTP GET: http://localhost:8181/graphql?query={ allEmployees{id, name, email}}
 ```
 
+Get employee by id
+```URL
+HTTP GET http://localhost:8181/graphql?query={ employee(id:1){id, name, email}}
+```
+
 Add/Update employee
 ```URL
 HTTP POST: http://localhost:8181/graphql

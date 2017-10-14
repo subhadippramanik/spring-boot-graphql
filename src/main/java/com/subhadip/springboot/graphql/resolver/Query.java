@@ -23,5 +23,9 @@ public class Query implements GraphQLQueryResolver {
 	public List<Employee> allEmployees() {
 		return Lists.newArrayList(empService.getAllEmployee());
 	}
+	
+	public Employee employee(int id) {
+		return empService.findById(id);
+	}
 
 }
