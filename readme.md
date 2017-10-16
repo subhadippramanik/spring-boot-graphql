@@ -50,9 +50,76 @@ BODY: {"query":"mutation{addEmployee(name:\"James\", email:\"james@email.demo\")
 ### Update employee
 ```URL
 HTTP POST: http://localhost:8181/demo
-BODY: {"query":"mutation{updateEmployee(id:1, name:\"James\", email:\"james@email.demo\"){id name email}}"}
+BODY: {"query":"mutation{updateEmployee(id:1, name:\"James\", email:\"james.ql@email.demo\"){id name email}}"}
 ```
-
+### Mapping and relationship between Entities
+So far we handled only one entity `Employee`. Now let's bring some reality here. Employee without a department? Umm! So we need `Department` - our another entity.
+For the simplicity we assume the Department is very simple for now. It has an `ID`, a `name`, a `code` and a `manager` who is `Employee`.
+Our `Department` type should look like 
+```
+type Department {
+  id: Int!
+  name: String!
+  code: String!
+  manager: Employee
+}
+```
+As described, we have `manager` of type `Employee`..that's how we define the first relationship.
+Now let's create a department. Till now James joined, but had no department..so we will assign him as the manager of the new department.
+```URL
+HTTP POST: http://localhost:8181/demo
+BODY: {"query":"mutation{addDepartment(name:\"Admin\", code:\"001\", managerId:1){id name code}}"}
+```
+So along with the department `name` and `code` we here provide the `id` of James and `managerId` and the response is pretty nice and highly customisable..
+```JSON
+{
+    "data": {
+        "addDepartment": {
+            "id": 1,
+            "name": "Admin",
+            "code": "001"
+        }
+    }
+}
+```
+Now let's form `query` and see how we can customize the result as per our need.
+First we get department details based on id
+```URL
+HTTP GET: http://localhost:8181/demo?query={ department(id:1){id, name, code} }
+```
+and the result is 
+```JSON
+{
+    "data": {
+        "department": {
+            "id": 1,
+            "name": "Admin",
+            "code": "001"
+        }
+    }
+}
+```
+Yes..that's what we added just now, but where is the mapped manager? Is it there? or lost?
+To check that we again form the query. This time we need department details along with manager name and email.
+```URL
+HTTP POST: http://localhost:8181/demo?query={ department(id:1){id, name, code manager{name, email}} } 
+```
+See..we have added one more parameter in the query and mentioned eaxctly the properties we want from that type and result is 
+```JSON
+{
+    "data": {
+        "department": {
+            "id": 1,
+            "name": "Admin",
+            "code": "001",
+            "manager": {
+                "name": "James",
+                "email": "james.ql@email.demo"
+            }
+        }
+    }
+}
+```
 # Using Project lombok
 The type class `Employee` is a typical POJO with `@Entity` annotation.
 ```java
@@ -109,3 +176,7 @@ public class Employee {
 ```
 
 #### more features coming soon...
+###### TODOs
+- ###### Split Query and Mutation classes -> resource wise
+- ###### One to Many relationship 
+- ###### Query to find reverse mapping -> Employee to Department

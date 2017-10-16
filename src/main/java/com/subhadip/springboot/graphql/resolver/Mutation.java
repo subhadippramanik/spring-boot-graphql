@@ -6,17 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import com.subhadip.springboot.graphql.model.Department;
 import com.subhadip.springboot.graphql.model.Employee;
+import com.subhadip.springboot.graphql.service.DepartmentService;
 import com.subhadip.springboot.graphql.service.EmployeeService;
 
 @Component
 public class Mutation implements GraphQLMutationResolver {
 
-	private EmployeeService empService;
+	private final EmployeeService empService;
+	
+	private final DepartmentService deptService;
 	
 	@Autowired
-	public Mutation(EmployeeService empService) {
+	public Mutation(EmployeeService empService, DepartmentService deptService) {
 		this.empService = empService;
+		this.deptService = deptService;
 	}
 	
 	public Employee addEmployee(String name, String email) {
@@ -31,5 +36,13 @@ public class Mutation implements GraphQLMutationResolver {
 		existingEmp.setName(name.orElse(existingEmp.getName()));
 		existingEmp.setEmail(email.orElse(existingEmp.getEmail()));
 		return empService.save(existingEmp);		
+	}
+	
+	public Department addDepartment(String name, String code, Optional<Integer> managerId) {
+		Department deptToAdd = new Department();
+		deptToAdd.setName(name);
+		deptToAdd.setCode(code);
+		deptToAdd.setManager(empService.findById(managerId.orElse(null)));
+		return deptService.save(deptToAdd);
 	}
 }
