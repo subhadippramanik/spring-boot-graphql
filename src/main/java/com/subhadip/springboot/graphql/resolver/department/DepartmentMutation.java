@@ -27,7 +27,7 @@ public class DepartmentMutation implements GraphQLMutationResolver {
 		Department deptToAdd = new Department();
 		deptToAdd.setName(name);
 		deptToAdd.setCode(code);
-		deptToAdd.setManager(empService.findById(managerId.orElse(null)));
+		deptToAdd.setManager(empService.findById(managerId.orElse(0)));
 		return deptService.save(deptToAdd);
 	}
 }
