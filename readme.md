@@ -16,10 +16,26 @@ mvn clean install
  This runs the applicaiton which is accessible at `http://localhost:8181/demo`. The endpount `/demo` can be changed through the configuration in `application.yml` or `application.properites`. Same with the port `8181`.
 
 
+Let's start with a simple entity `Employee`. In GraphQL schema we define a tpye for the entity which looks like 
+```
+type Employee {
+  id: Int!
+  name: String!
+  email: String
+}
+```
+
+### Add employee
+```URL
+HTTP POST: http://localhost:8181/demo
+BODY: {"query":"mutation{addEmployee(name:\"James\", email:\"james@email.demo\"){id name email}}"}
+```
+
 ### Get all employees
 ```URL
 HTTP GET: http://localhost:8181/demo?query={ employees{id, name, email}}
 ```
+
 
 ### Get emplyees by name
 ```URL
@@ -39,12 +55,6 @@ HTTP GET http://localhost:8181/demo?query={ employees(name:"James", email:"james
 ### Get employee by id
 ```URL
 HTTP GET http://localhost:8181/demo?query={ employee(id:1){id, name, email}}
-```
-
-### Add employee
-```URL
-HTTP POST: http://localhost:8181/demo
-BODY: {"query":"mutation{addEmployee(name:\"James\", email:\"james@email.demo\"){id name email}}"}
 ```
 
 ### Update employee
