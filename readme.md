@@ -28,7 +28,7 @@ HTTP GET http://localhost:8181/demo?query={ employees(name:"James"){id, name, em
 
 ### Get employees by email
 ```URL
-HTTP GET http://localhost:8181/demo?query={ employees(name:"James"){id, name, email}}
+HTTP GET http://localhost:8181/demo?query={ employees(email:"james@email.demo"){id, name, email}}
 ```
 
 ### Get employees by name and email
@@ -41,9 +41,15 @@ HTTP GET http://localhost:8181/demo?query={ employees(name:"James", email:"james
 HTTP GET http://localhost:8181/demo?query={ employee(id:1){id, name, email}}
 ```
 
-### Add/Update employee
+### Add employee
 ```URL
 HTTP POST: http://localhost:8181/demo
-BODY: {"query":"mutation{addEmployee(id:1, name:\"James\", email:\"james@email.demo\"){id name email}}"}
+BODY: {"query":"mutation{addEmployee(name:\"James\", email:\"james@email.demo\"){id name email}}"}
+```
+
+### Update employee
+```URL
+HTTP POST: http://localhost:8181/demo
+BODY: {"query":"mutation{updateEmployee(id:1, name:\"James\", email:\"james@email.demo\"){id name email}}"}
 ```
 #### more features coming soon...
