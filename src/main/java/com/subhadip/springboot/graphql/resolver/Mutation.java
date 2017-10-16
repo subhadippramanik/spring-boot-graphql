@@ -1,5 +1,7 @@
 package com.subhadip.springboot.graphql.resolver;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +26,10 @@ public class Mutation implements GraphQLMutationResolver {
 		return empService.save(empToAdd);
 	}
 	
-	public Employee updateEmployee(int id, String name, String email) {
+	public Employee updateEmployee(int id, Optional<String> name, Optional<String> email) {
 		Employee existingEmp = empService.findById(id);
-		existingEmp.setName(name);
-		existingEmp.setEmail(email);
+		existingEmp.setName(name.orElse(existingEmp.getName()));
+		existingEmp.setEmail(email.orElse(existingEmp.getEmail()));
 		return empService.save(existingEmp);		
 	}
 }

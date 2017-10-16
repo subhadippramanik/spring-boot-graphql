@@ -1,7 +1,9 @@
 package com.subhadip.springboot.graphql.resolver;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +25,8 @@ public class Query implements GraphQLQueryResolver {
 		return empService.findById(id);
 	}
 	
-	public List<Employee> employees(String name, String email) {
-		return empService.findByNameAndOrEmail(name, email);
+	public List<Employee> employees(Optional<String> name, Optional<String> email) {
+		return empService.findByNameAndOrEmail(name.orElse(StringUtils.EMPTY), email.orElse(StringUtils.EMPTY));
 	}
 
 }

@@ -33,7 +33,7 @@ public class EmployeeService {
 		return repository.findOne(id);
 	}
 
-	public List<Employee> findByNameAndOrEmail(String name, String email) {		
+	public List<Employee> findByNameAndOrEmail(String name, String email) {
 		return getAllEmployee().stream()//
 				.filter(filterByNameIfSupplied(name))//
 				.filter(filterByEmailIfSupplied(email))//
@@ -41,12 +41,10 @@ public class EmployeeService {
 	}
 
 	private static Predicate<Employee> filterByEmailIfSupplied(String email) {
-		Predicate<Employee> filterByEmailIfSupplied = emp -> StringUtils.isNotBlank(email) ? email.equalsIgnoreCase(emp.getEmail()) : Boolean.TRUE;
-		return filterByEmailIfSupplied;
+		return emp -> StringUtils.isNotBlank(email) ? email.equalsIgnoreCase(emp.getEmail()) : Boolean.TRUE;
 	}
 
 	private static Predicate<Employee> filterByNameIfSupplied(String name) {
-		Predicate<Employee> filterByNameIfSupplied = emp -> StringUtils.isNotBlank(name) ? name.equalsIgnoreCase(emp.getName()) : Boolean.TRUE;
-		return filterByNameIfSupplied;
+		return emp -> StringUtils.isNotBlank(name) ? name.equalsIgnoreCase(emp.getName()) : Boolean.TRUE;
 	}
 }
