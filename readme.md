@@ -52,4 +52,60 @@ BODY: {"query":"mutation{addEmployee(name:\"James\", email:\"james@email.demo\")
 HTTP POST: http://localhost:8181/demo
 BODY: {"query":"mutation{updateEmployee(id:1, name:\"James\", email:\"james@email.demo\"){id name email}}"}
 ```
+
+# Using Project lombok
+The type class `Employee` is a typical POJO with `@Entity` annotation.
+```java
+@Entity
+public class Employee {
+
+	private int id;
+
+	private String name;
+
+	private String email;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+}
+```
+So to reduce the overhead of writing and maintaining `Setter`, `Getter`, `toString`, `hashCode` and `equals` method we have used `lombok` and the same class is now significantly smaller and cleaner.
+```java
+@Entity
+@Data
+public class Employee {
+
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	private String name;
+
+	private String email;
+}
+```
+
 #### more features coming soon...
