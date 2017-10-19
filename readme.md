@@ -1,4 +1,13 @@
 # Intro
+## What is `GraphQL`?
+GraphQL is a data query language developed internally by Facebook in 2012 before being publicly released in 2015. It provides an alternative to REST and ad-hoc webservice architectures.
+###### source: wikipedta
+
+## `GraphQL` vs `REST`
+There are many similarities and differences.. No one is clear winner over other one. The selection is entirely dependent on the usecase.
+Here are some nice articles for reference:
+[dev-blog.apollodata.com](https://dev-blog.apollodata.com/graphql-vs-rest-5d425123e34b), 
+[howtographql.com](https://www.howtographql.com/basics/1-graphql-is-the-better-rest/)
 
 This is a sample project using `GraphQL` with `Spring Boot`.
 
