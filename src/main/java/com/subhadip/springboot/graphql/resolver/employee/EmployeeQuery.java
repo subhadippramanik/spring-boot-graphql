@@ -14,6 +14,8 @@ import com.subhadip.springboot.graphql.service.EmployeeService;
 @Component
 public class EmployeeQuery implements GraphQLQueryResolver {
 
+	private static final String EMPTY = StringUtils.EMPTY;
+	
 	private final EmployeeService empService;
 
 	@Autowired
@@ -26,7 +28,7 @@ public class EmployeeQuery implements GraphQLQueryResolver {
 	}
 	
 	public List<Employee> employees(Optional<String> name, Optional<String> email) {
-		return empService.findByNameAndOrEmail(name.orElse(StringUtils.EMPTY), email.orElse(StringUtils.EMPTY));
+		return empService.findByNameAndOrEmail(name.orElse(EMPTY), email.orElse(EMPTY));
 	}
 
 }
