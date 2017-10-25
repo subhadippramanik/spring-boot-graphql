@@ -197,5 +197,5 @@ public class Employee {
 #### more features coming soon...
 ###### TODOs
 - ###### <s>Split Query and Mutation classes -> resource wise</s>
-- ###### One to Many relationship 
+- ###### One to Many relationship -> `Employee` has mulitple `Asset`s
 - ###### Query to find reverse mapping -> Employee to Department

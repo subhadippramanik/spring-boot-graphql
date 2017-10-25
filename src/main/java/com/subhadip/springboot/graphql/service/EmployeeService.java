@@ -34,17 +34,13 @@ public class EmployeeService {
 	}
 
 	public List<Employee> findByNameAndOrEmail(String name, String email) {
+		Predicate<Employee> filterByNameIfSupplied = emp -> StringUtils.isNotBlank(name) //
+				? name.equalsIgnoreCase(emp.getName()) : Boolean.TRUE;
+		Predicate<Employee> filterByEmailIfSupplied = emp -> StringUtils.isNotBlank(email) //
+				? email.equalsIgnoreCase(emp.getEmail()) : Boolean.TRUE;
 		return getAllEmployee().stream()//
-				.filter(filterByNameIfSupplied(name))//
-				.filter(filterByEmailIfSupplied(email))//
+				.filter(filterByNameIfSupplied)//
+				.filter(filterByEmailIfSupplied)//
 				.collect(Collectors.toList());
-	}
-
-	private static Predicate<Employee> filterByEmailIfSupplied(String email) {
-		return emp -> StringUtils.isNotBlank(email) ? email.equalsIgnoreCase(emp.getEmail()) : Boolean.TRUE;
-	}
-
-	private static Predicate<Employee> filterByNameIfSupplied(String name) {
-		return emp -> StringUtils.isNotBlank(name) ? name.equalsIgnoreCase(emp.getName()) : Boolean.TRUE;
 	}
 }

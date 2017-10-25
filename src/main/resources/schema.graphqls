@@ -2,6 +2,7 @@ type Employee {
   id: Int!
   name: String!
   email: String
+  department: Department
 }
 
 type Department {
@@ -18,8 +19,8 @@ type Query {
 }
 
 type Mutation {
-  addEmployee(name: String!, email: String): Employee
-  updateEmployee(id: Int!, name: String, email: String): Employee
+  addEmployee(name: String!, email: String, departmentId: Int): Employee
+  updateEmployee(id: Int!, name: String, email: String, departmentId: Int): Employee
   addDepartment(name: String, code: String, managerId: Int): Department
 }
 
