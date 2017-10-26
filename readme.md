@@ -33,6 +33,63 @@ type Employee {
   email: String
 }
 ```
+But wait..how do we know what is there in `Employee`? 
+
+This starter application also comes integrated with a nice UI of `GrpahiQL`. Hit the browser with `http://localhost:8181/graphiql` and you will land into that UI. The left side pannel is query builder and the right side is response viewer.
+
+On the query builder we can try this query
+```JSON
+query {
+  __type(name: "Employee") {
+    fields {
+      name
+      type {
+        kind
+        name
+        ofType {
+          kind
+          name
+        }
+      }
+    }
+  }
+}
+```
+and it will show the detials of how the `Employee` is defined. Now we need to know what are the supported operations available..again the query is: 
+
+```JSON
+{
+  __schema {
+    queryType {
+      name
+      # Shows all defined queries
+      fields {
+        name
+        # Shows arguments of queries
+        args {
+          name
+          type {            
+            name
+            ofType {              
+              name
+            }
+          }
+        }
+        # Shows return type of queries
+        type {
+          kind
+          name
+          ofType{
+            name
+          }
+        }        
+      }
+    }
+  }
+}
+```
+
+This shows all get operations available. Just replace `queryType` with `mutationType` and it will show all the update operations supported.
 
 ### Add employee
 ```URL
@@ -199,3 +256,4 @@ public class Employee {
 - ###### <s>Split Query and Mutation classes -> resource wise</s>
 - ###### One to Many relationship 
 - ###### Query to find reverse mapping -> Employee to Department
+- ###### <s> Integration with `GraphiQL`</s>
