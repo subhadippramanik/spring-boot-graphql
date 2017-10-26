@@ -11,3 +11,8 @@ graphql:
     mapping: /demo
     enabled: true
     corsEnabled: true
+    
+graphiql:
+  mapping: /graphiql
+  endpoint: /demo
+  enabled: true
